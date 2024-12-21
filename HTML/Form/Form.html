@@ -4,8 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forms</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+        }
+        form{
+            max-width: 400px;
+            margin: auto;
+            padding: 50px;
+            border: 2px solid green;
+            border-radius: 50px;
+            -webkit-box-shadow: 10px 10px 5px 0px rgba(214, 21, 214, 1);
+            -moz-box-shadow: 10px 10px 5px 0px rgba(214, 21, 214, 1);
+            box-shadow: 10px 10px 5px 0px rgba(214, 21, 214, 1);
+        }
+        label{
+            display: block;
+            margin: 10px 0 5px 0;
+        }
+        input, textarea, select, button{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        button{
+            background: rgb(171, 23, 240);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover{
+            background: brown;
+        }
+        .error{
+            color: red;
+            font: 1rem;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Form Basics</h1>
+    <form action="" id="myForm" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required placeholder="Eg: Meena">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" required placeholder="Eg: meena123@gmail.com">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Min 16 Char">
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" cols="30" rows="10" placeholder="Enter your message."></textarea>
+        <button type="submit">Submit</button>
+        <p id="errorMessage" class="error"></p>
+    </form>
+    <script>
+        const form = document.getElementById("myForm");
+        const errorMessage = document.getElementById("errorMessage");
+form.addEventListener('submit', function (event){
+    errorMessage.textContent="";
+    const password = document.getElementById("password").value;
+    if(password.lenght <6){
+        event.preventDefault();
+        errorMessage.textContent = "Password must be atleast 6 charecter long."
+    }
+});
+    </script>
 </body>
 </html>
